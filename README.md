@@ -12,10 +12,6 @@ Please note that I did use ChatGPT and Claude to learn the HTML required to crea
 
 ---
 
-I take no responsibility for any consequences that using this code in the wrong scenarios may have. Don't get in trouble, be smart. This code is just meant to be interesting and fun.
-
----
-
 Links and tools I used:
 
 Debug console: https://prettier.io/playground
@@ -27,3 +23,7 @@ JavaScript minifiers: https://minify-js.com/ & https://skalman.github.io/UglifyJ
 ChatGPT: https://chatgpt.com/
 
 Claude: https://claude.ai/
+
+---
+
+I take no responsibility for any consequences that using this code in the wrong scenarios may have. Don't get in trouble, be smart. This code is just meant to be interesting and fun.
