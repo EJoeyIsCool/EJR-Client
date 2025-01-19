@@ -15,7 +15,7 @@
     background: white;
     max-height: 90vh;
     z-index: 999999;
-    box-shadow: 3px 3px 8px rgba(255, 255, 255, 0.7);
+    box-shadow: 2px 2px 8px rgba(255, 255, 255, 0.5);
   }
   
   #ejrClientContainer #ejrButtonsContainer {
