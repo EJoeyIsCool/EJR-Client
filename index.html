@@ -34,8 +34,20 @@
 
 <h1>Drag Me Into Your Bookmarks Bar</h1>
 
-<a href="javascript:!function(){var e=document.createElement('script');e.src='https://EJoeyIsCool.github.io/EJR-Client/MinifiedJavascriptCode.js',e.onload=function(){e.remove()},e.onerror=function(){alert('Failed to load the script. Check if the website you are on has Javascript execution enabled.'),e.remove()},document.body.appendChild(e)}();">
+<a id="clientCode">
   <button>
     EJR Client
   </button>
 </a>
+
+<script>
+  const fetchCode = async () => {
+    const response = await fetch("https://ejoeyiscool.github.io/EJR-Client/MinifiedJavascriptCode.js")
+    return await response.text()
+  }
+
+  (async () => {
+    const code = await fetchCode()
+    document.getElementById("clientCode").href = code
+  })()
+</script>
