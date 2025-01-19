@@ -1,6 +1,6 @@
 # EJR-Client
 
-To bookmark the client as simply as possible, go to the EJR-Client.js file in this repository. (https://github.com/EJoeyIsCool/EJR-Client/blob/main/EJR-Client.js)
+To bookmark the client as simply as possible, go to the small site I made. (https://ejoeyiscool.github.io/EJR-Client/index.html)
 
 ---
 
