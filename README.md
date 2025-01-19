@@ -1,4 +1,15 @@
 # EJR-Client
+
+To bookmark the client as simply as possible, go to the EJR-Client.js file in this repository. (https://github.com/EJoeyIsCool/EJR-Client/blob/main/EJR-Client.js)
+
+---
+
+I take no responsibility for any consequences that using this code in the wrong scenarios may have. Don't get in trouble, be smart. This code is just meant to be interesting and fun.
+
+---
+
+Description:
+
 My weekend project to improve on an old ChatGPT generated bookmarklet of mine (Triple Helix Client) by coding it myself.
 
 Please note that I did use ChatGPT and Claude to learn the HTML required to create this, and also for debugging at points. I never copied it's code though.
