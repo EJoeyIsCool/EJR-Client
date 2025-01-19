@@ -8,7 +8,7 @@ Description:
 
 My weekend project to improve on an old ChatGPT generated bookmarklet of mine (Triple Helix Client) by coding it myself.
 
-Please note that I did use ChatGPT and Claude to learn the HTML required to create this, and also for debugging at points. I never copied it's code though.
+Please note that I did use ChatGPT and Claude to learn the HTML required to create this, and also for debugging at points. I never copied its code though.
 
 ---
 
