@@ -1,10 +1,10 @@
 (() => {
-  let containerCheck = document.getElementById("clientContainer")
-  if (containerCheck) {containerCheck.remove()}
-  let styleCheck = document.getElementById("containerStyle")
-  if (styleCheck) {styleCheck.remove()}
+  let ejrClientCheck = document.getElementById("ejrClientContainer")
+  if (ejrClientCheck) {ejrClientCheck.remove()}
+  let ejrStyleCheck = document.getElementById("ejrClientStyle")
+  if (ejrStyleCheck) {ejrStyleCheck.remove()}
   
-  const containerCSS = `#clientContainer {
+  const ejrClientCSS = `#ejrClientContainer {
     margin: 8px;
     padding: 5px;
     position: fixed;
@@ -18,7 +18,7 @@
     box-shadow: 3px 3px 8px rgba(255, 255, 255, 0.7);
   }
   
-  #clientContainer #buttonsContainer {
+  #ejrClientContainer #ejrButtonsContainer {
     margin: 0px;
     padding: 0px;
     display: inline-flex;
@@ -27,7 +27,7 @@
     align-items: flex-start;
   }
   
-  #clientContainer h1 {
+  #ejrClientContainer #ejrTitle {
     margin: 5px;
     padding: 3px;
     text-align: center;
@@ -39,7 +39,7 @@
     white-space: nowrap;
   }
   
-  #clientContainer button {
+  #ejrClientContainer button {
     margin: 5px;
     padding: 7px;
     color: white;
@@ -50,54 +50,60 @@
     cursor: pointer;
   }
   
-  .button {
+  #ejrClientContainer .ejrButton {
     background: #20C20E;
   }
   
-  .button:hover {
+  #ejrClientContainer .ejrButton:hover {
     background: #20D20F;
   }
   
-  .folder {
+  #ejrClientContainer .ejrFolder {
     background: #15810A;
   }
   
-  .folder:hover {
+  #ejrClientContainer .ejrFolder:hover {
     background: #14A40A;
   }
   
-  .back {
+  #ejrClientContainer .ejrBack {
     background: #E10000;
   }
   
-  .back:hover {
+  #ejrClientContainer .ejrBack:hover {
     background: #FF0000;
   }`
   
-  const containerStyle = document.createElement("style")
-  containerStyle.id = "containerStyle"
-  containerStyle.textContent = containerCSS
-  document.head.appendChild(containerStyle)
+  const ejrClientStyle = document.createElement("style")
+  ejrClientStyle.id = "ejrClientStyle"
+  ejrClientStyle.textContent = ejrClientCSS
+  document.head.appendChild(ejrClientStyle)
   
-  const clientContainer = document.createElement("div")
-  clientContainer.id = "clientContainer"
-  const clientTitle = document.createElement("h1")
-  clientTitle.id = "title"
-  clientTitle.textContent = "EJR Client"
-  clientContainer.appendChild(clientTitle)
-  const buttonsContainer = document.createElement("div")
-  buttonsContainer.id = "buttonsContainer"
+  const ejrClientContainer = document.createElement("div")
+  ejrClientContainer.id = "ejrClientContainer"
+  const ejrTitle = document.createElement("h1")
+  ejrTitle.id = "ejrTitle"
+  ejrTitle.textContent = "EJR Client"
+  ejrClientContainer.appendChild(ejrTitle)
+  const ejrButtonsContainer = document.createElement("div")
+  ejrButtonsContainer.id = "ejrButtonsContainer"
   
-  document.body.appendChild(clientContainer)
-  clientContainer.appendChild(buttonsContainer)
+  document.body.appendChild(ejrClientContainer)
+  ejrClientContainer.appendChild(ejrButtonsContainer)
   
-  const updateButtonsContainerMaxHeight = () => {
-    const clientContainerMaxHeight = getComputedStyle(clientContainer).maxHeight
-    buttonsContainer.style.maxHeight = `calc(${clientContainerMaxHeight} - ${clientTitle.offsetHeight}px)`
+  const setButtonsContainerMaxHeight = () => {
+    const ejrClientContainerMaxHeight = getComputedStyle(ejrClientContainer).maxHeight
+    const ejrTempButton = document.createElement("button")
+    ejrTempButton.style.position = "absolute"
+    ejrTempButton.style.visibility = "hidden"
+    ejrClientContainer.appendChild(ejrTempButton)
+    const ejrButtonsHeight = getComputedStyle(ejrTempButton).height
+    ejrTempButton.remove()
+    ejrButtonsContainer.style.maxHeight = `calc(${ejrClientContainerMaxHeight} - ${ejrTitle.offsetHeight}px - ${ejrButtonsHeight})`
   }
   
-  updateButtonsContainerMaxHeight()
-  window.addEventListener("resize", updateButtonsContainerMaxHeight)
+  setButtonsContainerMaxHeight()
+  window.addEventListener("resize", setButtonsContainerMaxHeight)
 
 let buttons = [
   {
@@ -723,23 +729,23 @@ let buttons = [
   }
 ];
 
-  containerLoadedFunction = () => {
-    const title = document.getElementById("title")
-    const $ = document.getElementById("buttonsContainer")
+  ejrContainerLoadedFunction = () => {
+    const title = document.getElementById("ejrTitle")
+    const $ = document.getElementById("ejrButtonsContainer")
     
     const recurse = (path, titlePath, depth) => {
       title.innerText = titlePath[depth]
-      document.querySelectorAll("#buttonsContainer button").forEach(button => button.remove())
+      document.querySelectorAll("#ejrButtonsContainer button").forEach(button => button.remove())
       
       for (const btn of path[depth]) {
         const button = document.createElement("button")
         button.textContent = btn.text
         if (btn.type === "button") {
-          button.className = "button"
+          button.className = "ejrButton"
           button.onclick = btn.onclick
         }
         else if (btn.type === "folder") {
-          button.className = "folder"
+          button.className = "ejrFolder"
           button.onclick = () => {
             titlePath.push(btn.text)
             path.push(btn.subfolder)
@@ -748,9 +754,9 @@ let buttons = [
         }
         $.appendChild(button)
       }
-      if (depth !== 0) {
+      if (depth > 0) {
         const button = document.createElement("button")
-        button.className = "back"
+        button.className = "ejrBack"
         button.textContent = "Back"
         button.onclick = () => {
           titlePath.pop()
@@ -763,9 +769,9 @@ let buttons = [
     recurse([buttons], [title.innerText], 0)
   }
 
-  keypressListererFunction = (event) => {
+  ejrKeypressListererFunction = (event) => {
     if (event.key === "\\") {
-      const $ = document.getElementById("clientContainer").style
+      const $ = document.getElementById("ejrClientContainer").style
       if ($.visibility === "hidden") {
         $.visibility = "visible"
       } else {
@@ -774,19 +780,19 @@ let buttons = [
     }
     
     if (event.key === "`") {
-      const $ = document.getElementById("clientContainer")
+      const $ = document.getElementById("ejrClientContainer")
       $.remove()
-      const style = document.getElementById("containerStyle")
+      const style = document.getElementById("ejrClientStyle")
       style.remove()
       
-      clientContainer.removeEventListener("containerLoaded", containerLoadedFunction)
-      document.removeEventListener('keydown', keypressListererFunction)
-      window.removeEventListener("resize", updateButtonsContainerMaxHeight)
+      ejrClientContainer.removeEventListener("containerLoaded", ejrContainerLoadedFunction)
+      document.removeEventListener('keydown', ejrKeypressListererFunction)
+      window.removeEventListener("resize", setButtonsContainerMaxHeight)
     }
   }
   
-  clientContainer.addEventListener("containerLoaded", containerLoadedFunction)
-  document.addEventListener('keydown', keypressListererFunction)
+  ejrClientContainer.addEventListener("ejrClientLoaded", ejrContainerLoadedFunction)
+  document.addEventListener('keydown', ejrKeypressListererFunction)
   
-  clientContainer.dispatchEvent(new Event("containerLoaded"))
+  ejrClientContainer.dispatchEvent(new Event("ejrClientLoaded"))
 })()
